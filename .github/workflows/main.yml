@@ -5,8 +5,14 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: thehanimo/pr-title-checker@v1.3.4
+      - uses: morrisoncole/pr-lint-action@v1.6.1
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          pass_on_octokit_error: false
-          configuration_path: ".github/pr-title-checker-config.json"
+          title-regex: "((NG)-[0-9]+|(feat: |tests: |misc: )[A-Za-z0-9].{5,50})"
+          on-failed-regex-fail-action: true
+          on-failed-regex-request-changes: true
+          on-failed-regex-create-review: true
+          on-failed-regex-comment:
+            "This is just an example. Failed regex: `%regex%`!"
+          on-succeeded-regex-dismiss-review-comment:
+            "This is just an example. Success!"
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
