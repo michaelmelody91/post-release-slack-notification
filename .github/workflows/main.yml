@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: morrisoncole/pr-lint-action@v1.6.1
         with:
-          title-regex: "((NG)-[0-9]+|(feat: |tests: |misc: )[A-Za-z0-9].{5,50})"
+          title-regex: "((NG)-[0-9]+|(feat:|tests:|misc:))\s.{5,50}$"
           on-failed-regex-fail-action: true
           on-failed-regex-request-changes: true
           on-failed-regex-create-review: true
